@@ -1,5 +1,5 @@
 {% extends 'hod_templates/base_template.html'%} {% block page_title %}
-<h5>All patients</h5>
+<h5>All Pharmacists</h5>
 
 {% endblock page_title %} {% block main_content %}
 <section class="content">
@@ -35,7 +35,7 @@
                     <div class="card-tools d-flex">
 
 
-                        <a class="btn btn-sm btn-info mr-2" href="{% url 'manage_pharmacist'  %}" role="button">+ Add Pharmacist</a>
+                        <a class="btn btn-sm btn-info mr-2" href="{% url 'add_pharmacist' %}" role="button">+ Add Pharmacist</a>
 
                     </div>
                 </div>

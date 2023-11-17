@@ -1156,28 +1156,37 @@ swal2-icon.swal2-success {
 }
 
 .mojahi {
-    background: linear-gradient(to right, rgb(98, 98, 202), rgb(44, 124, 230)) !important;
+    background: linear-gradient(to right, rgb(30, 30, 80), rgb(70, 70, 150)) !important;
+    border-radius: 5px;
+    color: white;
+}
+
+.mojahi {
+    background: linear-gradient(to right, #3498db, #2c3e50) !important; /* Blue and Dark Blue */
     border-radius: 5px;
     color: white;
 }
 
 .mojahi2 {
-    background: linear-gradient(to right, rgb(187, 53, 169), rgb(218, 76, 206)) !important;
+    background: linear-gradient(to right, #e74c3c, #f39c12) !important; /* Red and Orange */
     border-radius: 5px;
     color: white;
 }
 
 .mojahi3 {
-    background: linear-gradient(to right, rgb(141, 46, 160), rgb(181, 96, 221)) !important;
+    background: linear-gradient(to right, #8e44ad, #9b59b6) !important; /* Purple */
     border-radius: 5px;
     color: white;
 }
 
 .mojahi4 {
-    background: linear-gradient(to right, rgb(45, 172, 52), rgb(83, 185, 36)) !important;
+    background: linear-gradient(to right, #27ae60, #2ecc71) !important; /* Green */
     border-radius: 5px;
     color: white;
 }
+
+
+
 
 .dash-icon .col-md-3 {
     cursor: pointer !important;

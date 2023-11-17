@@ -1,0 +1,53 @@
+{% extends 'hod_templates/base_template.html'%}
+{% block page_title %}
+    <h5>Out of Stock Drugs</h5>
+{% endblock page_title %}
+
+{% block main_content %}
+<section class="content">
+    {% if out_of_stock_drugs %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span>Out of Stock Drugs</span>
+                    </div>
+                    <table class="table table-bordered table-hover dataTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Drug</th>
+                                <th>Category</th>
+                                <th>Reorder Level</th>
+                                <th>Date Stocked</th>
+                                <th>Expiry Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for drug in out_of_stock_drugs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ drug.drug_name }}</td>
+                                    <td>{{ drug.category }}</td>
+                                    <td>{{ drug.reorder_level }}</td>
+                                    <td>{{ drug.last_updated | date:"F d, Y" }}</td>
+                                    <td>{{ drug.valid_to }}</td>
+                                    <td>
+                                        <a href="{% url 'reorder_level' drug.id %}" class="btn btn-sm btn-warning">Reorder</a>
+                                        <!-- You can add more actions if needed -->
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <strong>No drugs are currently out of stock.</strong>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

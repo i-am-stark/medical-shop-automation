@@ -307,6 +307,25 @@ def manageStock(request):
     return render(request,'hod_templates/manage_stock.html',context)
 
 
+def expiredDrugs(request):
+    stocks = Stock.objects.all().order_by("-id")
+    ex = Stock.objects.annotate(
+        expired=ExpressionWrapper(Q(valid_to__lt=Now()), output_field=BooleanField())
+    ).filter(expired=True)
+    eo = Stock.objects.annotate(
+        expired=ExpressionWrapper(Q(valid_to__lt=Now()), output_field=BooleanField())
+    ).filter(expired=False)
+
+    context = {
+        "stocks": ex,
+        "expired": ex,
+        "expa": eo,
+        "title": "Manage Stocked Drugs"
+    }
+
+    return render(request, 'hod_templates/expired_drugs.html', context)
+
+
 def addCategory(request):
     try:
         form=CategoryForm(request.POST or None)
@@ -342,8 +361,17 @@ def addPrescription(request):
     return render(request,'hod_templates/prescribe.html',context)
 
 
+def outOfStock(request):
+    # Retrieve all drugs that are out of stock
+    out_of_stock_drugs = Stock.objects.filter(quantity=0)
 
-    
+    context = {
+        'out_of_stock_drugs': out_of_stock_drugs,
+        'title': 'Out of Stock Drugs'
+    }
+
+    return render(request, 'hod_templates/out_of_stock.html', context)
+
 def editPatient(request,patient_id):
     # adds patient id into session variable
     request.session['patient_id'] = patient_id
@@ -787,3 +815,7 @@ def drugDetails(request,pk):
 
     }
     return render(request,'hod_templates/view_drug.html',context)
+
+def order_list(request):
+    orders = Order.objects.all()
+    return render(request, 'hod_templates/order_list.html', {'orders': orders})

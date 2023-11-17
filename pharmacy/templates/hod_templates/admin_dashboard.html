@@ -22,20 +22,7 @@
         </div> -->
         <div class="col-lg-12 col-md-12 dash-icon">
             <div class="row">
-                <!--<div class="col-lg-3 col-md-6   col-sm-6">
-                    <div class="small-box mojahi">
-                        <div class="inner">
-                            <h3>{{patients_total}}</h3>
 
-                            <p>Total Patients</p>
-                        </div>
-                        <div class="icon uzer">
-                            <i class="fas fa-wheelchair"></i>
-                        </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div> -->
-                <!-- ./col -->
 
                 <!-- ./col -->
                 <div class="col-lg-3 col-md-6  col-sm-6">
@@ -62,7 +49,7 @@
                         <div class="icon">
                             <i class="fas fa-pills"></i>
                         </div>
-                        <a href="" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{%url 'expired_drugs' %}" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6  col-sm-6">
@@ -75,10 +62,24 @@
                         <div class="icon">
                             <i class="fas fa-capsules"></i>
                         </div>
-                        <a href="" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{%url 'out_of_stock' %}" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
+                <div class="col-lg-3 col-md-6   col-sm-6">
+                    <div class="small-box mojahi">
+                        <div class="inner">
+                            <h1>#</h1>
+
+                            <p>Sales Report</p>
+                        </div>
+                        <div class="icon uzer">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <a href="{% url 'order_list' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
 
 
             </div>
@@ -103,7 +104,7 @@
 
                 <!-- ./col -->
                 <div class="col-lg-3 col-sm-6  col-sm-6">
-                    <div class="small-box mojahi3">
+                    <div class="small-box mojahi2">
                         <div class="inner">
                             <h3>{{all_clerks}}</h3>
 
@@ -116,7 +117,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6  col-sm-6">
-                    <div class="small-box mojahi2">
+                    <div class="small-box mojahi3">
                         <div class="inner">
                             <h3>{{all_doctors}}</h3>
 
@@ -128,19 +129,19 @@
                         <a href="{% url 'manage_doctor' %}" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-               <!-- <div class="col-lg-3 col-md-6  col-sm-6">
+               <div class="col-lg-3 col-md-6  col-sm-6">
                     <div class="small-box mojahi">
                         <div class="inner">
-                            <h3>{{for_today}}</h3>
+                            <h3>#</h3>
 
-                            <p> Patients Admitted Today</p>
+                            <p>Purchase Report</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-wheelchair "></i>
+                            <i class="fas fa-newspaper "></i>
                         </div>
                         <a href="" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                </div>-->
+                </div>
 
             </div>
 
@@ -151,5 +152,19 @@
 
 
 </section>
+ <script>
+        // JavaScript code to get the present month and year
+        var currentDate = new Date();
+
+        // Get month and year
+        var month = currentDate.toLocaleString('default', { month: 'long' }); // Full month name
+        var year = currentDate.getFullYear();
+
+        // Format the date as Month Year
+        var formattedDate = month + ' ' + year;
+
+        // Insert the formatted date into the HTML element with the id 'currentMonthYear'
+        document.getElementById('currentDate').textContent = formattedDate;
+    </script>
 
 {% endblock main_content %}

@@ -164,7 +164,15 @@ class Stock(models.Model):
     def __str__(self):
         return str(self.drug_name)
    
-    
+
+class Order(models.Model):
+    bill_no = models.CharField(max_length=20)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    medicines = models.TextField()
+    customer_name = models.CharField(max_length=50)
+    customer_mob = models.CharField(max_length=15)
+
+
 class Dispense(models.Model):
     
     patient_id = models.ForeignKey(Patients, on_delete=models.DO_NOTHING,null=True)

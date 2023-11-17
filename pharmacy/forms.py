@@ -49,7 +49,7 @@ class PatientForm(forms.Form):
             raise ValidationError("This field is required")
         for instance in Patients.objects.all():
             if instance.reg_no==reg_no:
-                raise ValidationError( "Registration number aready exist")
+                raise ValidationError( "Registration number already exist")
       
         return reg_no
 
@@ -137,6 +137,31 @@ class CustomerForm(ModelForm):
        
 
 class DoctorForm(ModelForm):
+    class Meta:
+        model=Doctor
+        fields='__all__'
+        exclude=['admin','gender','mobile','address']
+
+        def clean_firstName(self):
+            first_name = self.cleaned_data['first_name']
+            if  not  first_name:
+                raise ValidationError("This field is required")
+            return first_name
+
+        def clean_mobile(self):
+            mobile=self.cleaned_data.get('mobile')
+            if not mobile:
+                raise forms.ValidationError('This field is requied')
+            return mobile
+        def clean_username(self):
+            username = self.cleaned_data['username']
+            if  not  username:
+                raise ValidationError("This field is required")
+            for instance in CustomUser.objects.all():
+                if instance.username==username:
+                    raise ValidationError( "Username aready exist")
+
+class PharmacistForm(ModelForm):
     class Meta:
         model=Doctor
         fields='__all__'
