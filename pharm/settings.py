@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from django.core.cache import cache 
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,16 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ui1u$88tg97g-()a(^hcv5mn#jzcu^3yb1n=!s7kn-!t25932n'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-# ALLOWED_HOSTS = ['pharmacymanage.herokuapp.com']
-ALLOWED_HOSTS = [
-    'stark-pharmacy.onrender.com'
-]
+# Reading the SECRET_KEY from environment variables
+SECRET_KEY = config('DJANGO_SECRET_KEY')
+
+# Reading DEBUG from environment variables
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
+
+# # ALLOWED_HOSTS = ['pharmacymanage.herokuapp.com']
+# ALLOWED_HOSTS = [
+#     'stark-pharmacy.onrender.com'
+# ]
 
 # Application definition
 
