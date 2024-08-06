@@ -1,1 +1,1 @@
-web: gunicorn  medical-shop-automation.wsgi
+web: gunicorn  pharm.wsgi --log-file -
